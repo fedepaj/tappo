@@ -81,11 +81,11 @@ Finally we can call `netif_add` in `main` as:
 netif_add("4","fec0:affe::99");
 ```
 Last but not least we need to add the following in `Makefile.ethos.conf` to let RIOT add a third entry tho the network interface:
-```c
+```make
 CFLAGS += -DCONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF=3
 ```
 and in `Makefile`:
-```c
+```make
 SERVER_ADDR = fec0:affe::1
 ```
 ## Networking (Linux side)
