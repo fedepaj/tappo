@@ -1,7 +1,7 @@
-## tappo
+# tappo
 What the name syas.
 
-# Network setup (NUCLEO side)
+## Network setup (NUCLEO side)
 
 For me networking didn't work out of the box so I've added two functions
 looking at the ones in RIOT's [sc_gnrc_netif.c](https://github.com/RIOT-OS/RIOT/blob/2453b68249d09ff680f3ea85343e26851d00da67/sys/shell/commands/sc_gnrc_netif.c) to mimic the behavior of the `ifconfig` command in [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn) (that was the only way to connect to broker).
@@ -85,7 +85,7 @@ Last but not least we need to add the following in the `Makefile.ethos.conf` to 
 CFLAGS += -DCONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF=3
 ```
 
-# Networking (Linux side)
+## Networking (Linux side)
 To make this work basically we need to follow [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-riot-native), so:
 
 ```sh 
@@ -93,8 +93,8 @@ sudo ./RIOT/dist/tools/tapsetup/tapsetup
 sudo ip a a fec0:affe::1/64 dev tapbr0
 ```
 
-# Run the MQTT-SN broker
+## Run the MQTT-SN broker
 
 This is pretty straight forward if we follow [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-a-broker).
 
-# Make
+## Make
