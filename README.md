@@ -80,11 +80,14 @@ Finally we can call `netif_add` in `main` as:
 ```c
 netif_add("4","fec0:affe::99");
 ```
-Last but not least we need to add the following in the `Makefile.ethos.conf` to let RIOT add a third entry tho the network interface:
-```
+Last but not least we need to add the following in `Makefile.ethos.conf` to let RIOT add a third entry tho the network interface:
+```c
 CFLAGS += -DCONFIG_GNRC_NETIF_IPV6_ADDRS_NUMOF=3
 ```
-
+and in `Makefile`:
+```c
+SERVER_ADDR = fec0:affe::1
+```
 ## Networking (Linux side)
 To make this work basically we need to follow [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-riot-native), so:
 
