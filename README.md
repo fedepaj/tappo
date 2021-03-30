@@ -1,5 +1,30 @@
 # tappo
-What the name syas.
+Is a safety oriented smart lid for plastic tanks.
+The device measures with with a varyng timing the level of the fluid in the tank and inform the user when it has reached the desired level to let the user stop the flow.
+
+## Device
+Works 
+# Ultrasonic range finder sr04
+Is used to determine the distance between the water and the neck of the tank.
+When the lid is on the neck the device makes an initial measuring of the distance between the sensor and the level of the liquid and sample it periodically.
+The level of the remainig part to fill is normalized between 0 and 100 and sended via the `measures` topic.
+
+# The switch
+The role of the switch is to decect when the lid has been placed on the neck of the tank and could be any sort of switch.
+
+The switch chosen is [this one](http://smparts.com/product_info.php?cPath=2_602&products_id=6689),a lever switch with a little wheel on top of it.
+Is placed in the circuit like [this](https://killerrobotics.files.wordpress.com/2015/09/lever-switch_bb.png).
+
+The switch it raises an interruppt that publishes the activeness of the lid to the `active` topic and let the device stop measuring the fill percentage.
+
+# Case
+Is the one that holds the sensors together and makes it a perfect lid for a 43mm 30L plastic tank that will be filled with 15mm tubing.
+
+# Piezo buzzer
+Informs the user that the level of the water has reached the desired level with an acoustic signal.
+
+# Led
+Is surely a visual cue but could really be switched by a relay.
 
 ## Network setup (NUCLEO side)
 
@@ -98,6 +123,20 @@ sudo ip a a fec0:affe::1/64 dev tapbr0
 
 ## Run the MQTT-SN broker
 
-This is pretty straight forward if we follow [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-a-broker).
+This is pretty straight forward following [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-a-broker) and caring to add at the bottom of the conf file the part relative to the transparent bridge.
+```
+connection local_bridge_to_mosquitto
+  address 127.0.0.1:1883
+  topic active out
+  topic measures out
+  topic commands in
+```
 
-## Make
+## Bridge   
+To brigde between MQTT-SN and MQTT we will use mosquitto like [here](https://aws.amazon.com/it/blogs/iot/how-to-bridge-mosquitto-mqtt-broker-to-aws-iot/).
+To begin we need the following from Amazon:
+* root certificate 
+* PEM encoded client certificate
+* client private key
+Now we need to specify in a mosquitto config file the adress of the AWT IoT core service and the topics, and their specific diretctions, that we want to bridge.
+To then run mosquitto with the config file in the current directory, after copying the AWS certificates `/etc/mosquitto/certs/`, as stated in the link above, we can also stop the service and issue the command with flag `-c` followed by the name of the file. 
