@@ -12,12 +12,12 @@ It uses the first measure as a reference to compute a value between 0 and 100 re
 If a critical percentage is reached the device will alert the user.
 
 ## Nucleo
-Refer to [this file]() to get more on how the hardware is builted and to [this one]() to see some code insights.
+Refer to [this file](nucleo/hardware/hardware.md) to get more on how the hardware is builted and to [this one](nucleo/nucleo.md) to see some code insights.
 
 ## Setup MQTT stuff
 
 ### Configure the MQTT-SN broker
-This is pretty straight forward following [emcute_mqttsn](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-a-broker) and caring to add at the bottom of the conf file the part relative to the transparent bridge.
+This is pretty straight forward following [emcute_mqttsn example](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-a-broker) and caring to add at the bottom of the conf file the part relative to the transparent bridge.
 
 ```
 connection local_bridge_to_mosquitto
@@ -26,7 +26,6 @@ connection local_bridge_to_mosquitto
   topic measures out
   topic led both
   topic buzz both
-
 ```
 
 ### Bridge between MQTT-SN and MQTT
@@ -44,7 +43,8 @@ Now we need to specify in a mosquitto config file the adress of the AWT IoT core
 Assumptions made in this section:
 * we cloned [RIOT](https://github.com/RIOT-OS/RIOT) and [mosquitto.rsmb](https://github.com/eclipse/mosquitto.rsmb) in the main directory of this project;
 * we are in the project directory.
-* 
+
+
 ### Make the nucleo network work
 To make this work basically following [emcute_mqttsn example](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-riot-native), so:
 
@@ -77,5 +77,5 @@ make BUILD_IN_DOCKER=1 BOARD=nucleo-f401re flash term
 ### Gateway Api
 
 ## Dashboard
-
+See [here](tappo_app/README.md) to have a look at the tappo's dashboard.
 ## Final results
