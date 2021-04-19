@@ -2,8 +2,8 @@
 Is a safety oriented smart cap tat senses liquid level.
 
 It's build manly for plastic tanks as are the ones used in the targeted senarios:
-- To help my father, that needs to fill distilled water tanks to refill the acquarium, know when to shut the valve to avoid a tank overflow.
-- To help monitor waste water produced by air conditioning system stored in plastic tanks.
+* To help my father, that needs to fill distilled water tanks to refill the acquarium, know when to shut the valve to avoid a tank overflow.
+* To help monitor waste water produced by air conditioning system stored in plastic tanks.
 
 When the device is inserted, it senses it and starts measuring the distance between the liquid and itself.
 
