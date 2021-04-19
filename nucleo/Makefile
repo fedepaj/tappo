@@ -5,15 +5,16 @@ APPLICATION = tappo
 BOARD ?= nucleo-f401re
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../../RIOT
+RIOTBASE ?= $(CURDIR)/../RIOT
 
-# Default to using ethos for providing the uplink when not on native
 UPLINK ?= ethos
-# Interrupt handler module
-USEMODULE += periph_gpio_irq
+
 # Ultrasonic range finder module
 USEMODULE += srf04
 USEMODULE += xtimer
+USEMODULE += fmt
+USEMODULE += periph_gpio
+USEMODULE += periph_pwm
 # Include packages that pull up and auto-init the link layer.
 # NOTE: 6LoWPAN will be included if IEEE802.15.4 devices are present
 USEMODULE += gnrc_netdev_default
@@ -24,21 +25,26 @@ USEMODULE += gnrc_ipv6_default
 USEMODULE += emcute
 # Optimize network stack to for use with a single network interface
 USEMODULE += gnrc_netif_single
-USEMODULE += timex
 USEMODULE += stdio_ethos gnrc_uhcpc
 
+EMCUTE_ID ?= tank_1
 ETHOS_BAUDRATE ?= 115200
 TAP ?= tap0
 USE_DHCPV6 ?= 0
 IPV6_PREFIX ?= fe80:2::/64 #?
 SERVER_ADDR = fec0:affe::1
 SERVER_PORT = 1885
-MQTT_TOPIC_OUT = localgateway_to_awsiot
-MQTT_TOPIC_IN = awsiot_to_localgateway
+MQTT_TOPIC_MEAS = $(EMCUTE_ID)/measures
+MQTT_TOPIC_ACT = $(EMCUTE_ID)/active
+MQTT_TOPIC_LED = $(EMCUTE_ID)/led
+MQTT_TOPIC_BUZZ = $(EMCUTE_ID)/buzz
+
 CFLAGS += -DSERVER_ADDR='"$(SERVER_ADDR)"'
 CFLAGS += -DSERVER_PORT=$(SERVER_PORT)
-CFLAGS += -DMQTT_TOPIC_OUT='"$(MQTT_TOPIC_OUT)"'
-CFLAGS += -DMQTT_TOPIC_IN='"$(MQTT_TOPIC_IN)"'
+CFLAGS += -DMQTT_TOPIC_ACT='"$(MQTT_TOPIC_ACT)"'
+CFLAGS += -DMQTT_TOPIC_MEAS='"$(MQTT_TOPIC_MEAS)"'
+CFLAGS += -DMQTT_TOPIC_LED='"$(MQTT_TOPIC_LED)"'
+CFLAGS += -DMQTT_TOPIC_BUZZ='"$(MQTT_TOPIC_BUZZ)"'
 
 # Allow for env-var-based override of the nodes name (EMCUTE_ID)
 ifneq (,$(EMCUTE_ID))
