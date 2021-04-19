@@ -6,7 +6,9 @@ It's build manly for plastic tanks as are the ones used in the targeted senarios
 - To help monitor waste water produced by air conditioning system stored in plastic tanks.
 
 When the device is inserted, it senses it and starts measuring the distance between the liquid and itself.
+
 It uses the first measure as a reference to compute a value between 0 and 100 representing the "fill percentage" of the tank.
+
 If a critical percentage is reached the device will alert the user.
 
 ## Nucleo
@@ -29,6 +31,7 @@ connection local_bridge_to_mosquitto
 
 ### Bridge between MQTT-SN and MQTT
 We will use mosquitto like [here](https://aws.amazon.com/it/blogs/iot/how-to-bridge-mosquitto-mqtt-broker-to-aws-iot/).
+
 To begin we need the following from Amazon:
 
 * root certificate 
@@ -38,7 +41,7 @@ To begin we need the following from Amazon:
 Now we need to specify in a mosquitto config file the adress of the AWT IoT core service and the topics, and their specific diretctions, that we want to bridge and copy the AWS certificates in `/etc/mosquitto/certs/`.
 
 ## How to run
-Assumptions made in the following section:
+Assumptions made in this section:
 * we cloned [RIOT](https://github.com/RIOT-OS/RIOT) and [mosquitto.rsmb](https://github.com/eclipse/mosquitto.rsmb) in the main directory of this project;
 * we are in the project directory.
 * 
