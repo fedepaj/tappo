@@ -1,0 +1,3 @@
+[submodule "tappo_app"]
+	path = tappo_app
+	url = https://github.com/fedepaj/tappo_app
