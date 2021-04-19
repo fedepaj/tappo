@@ -71,11 +71,16 @@ make BUILD_IN_DOCKER=1 BOARD=nucleo-f401re flash term
 ```
 
 ## AWS
-
 ### IoT Core
+Once data from the devices is received from Iot Core data from the 5 different topics is parsed by 5 diffent rules in 5 different tables. (and I don't know if this is the best approch)
+Device id is retrived and timestamp generated. These are as well stored.
 
 ### Gateway Api
+Once data is asked from the dashboard a lambda function for each endpoint is triggered.
+To retrive data we access DynamoDB, to toggle the actuators we publish to the relatives MQTT topics.
 
 ## Dashboard
-See [here](tappo_app/README.md) to have a look at the tappo's dashboard.
+You can find tappo's dashboard [here](https://github.com/fedepaj/tappo_app/).
+
 ## Final results
+
