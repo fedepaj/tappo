@@ -72,7 +72,7 @@ make BUILD_IN_DOCKER=1 BOARD=nucleo-f401re flash term
 
 
 ## AWS
-![NetOverview](network_overview_tappo.jpg)
+![NetOverview](https://github.com/fedepaj/tappo/blob/assets/network_overview_tappo.jpg)
 
 ### IoT Core
 Once data from the devices is received from Iot Core data from the 4 different topics is parsed by 4 diffent rules and stored in 4 different tables (I don't know if this is the best approch) based on device id and message timestamp.
