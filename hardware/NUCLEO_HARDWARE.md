@@ -2,7 +2,7 @@
 
 ![BoardScheme](https://github.com/fedepaj/tappo/blob/assets/baord_overview.jpg)
 
-![Board pics](https://github.com/fedepaj/tappo/blob/assets/board_tappo.jpg)
+
 ## Sensor and actuators
 * Sensors:
     * ultrasonic range finder sr04: to determine the distance between the water and the neck of the tank.
@@ -18,3 +18,6 @@
 * Case: holds the sensors together and makes it a perfect lid for a 43mm 30L plastic tank that will be filled with 15mm tubing.
 * Shield: gives order to the messy cables
 
+## Some device's pictures
+
+![Board pics](https://github.com/fedepaj/tappo/blob/assets/board_tappo.jpg)
