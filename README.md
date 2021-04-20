@@ -12,7 +12,7 @@ It uses the first measure as a reference to compute a value between 0 and 100 re
 If a critical percentage is reached the device will alert the user.
 
 ## Nucleo
-Refer to [this file](hardware/NUCLEO_HARDWARE.md) to get more on how the hardware is builted and to [this one](nucleo/NUCLEO.md) to see some code insights.
+Refer to [this file](hardware/NUCLEO_HARDWARE.md) to get more on the nucleo hardware and to [this one](nucleo/NUCLEO.md) to see some code insights.
 
 ## Setup MQTT stuff
 
