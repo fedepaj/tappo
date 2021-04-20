@@ -1,9 +1,9 @@
 # tappo
-Is a safety oriented smart cap tat senses liquid level.
+Is a safety oriented smart cap that senses liquid level.
 
-It's build manly for plastic tanks as are the ones used in the targeted senarios:
-* To help my father, that needs to fill distilled water tanks to refill the acquarium, know when to shut the valve to avoid a tank overflow.
-* To help monitor waste water produced by air conditioning system stored in plastic tanks.
+It's buildt manly for plastic tanks as are the ones used in the targeted senarios:
+* monitor distilled water tanks, used to refill an acquarium, to know when to shut the valve to avoid a tank overflow;
+* monitor waste water produced by air conditioning system often stored in plastic tanks.
 
 When the device is inserted, it senses it and starts measuring the distance between the liquid and itself.
 
@@ -12,7 +12,7 @@ It uses the first measure as a reference to compute a value between 0 and 100 re
 If a critical percentage is reached the device will alert the user.
 
 ## Nucleo
-Refer to [this file](nucleo/hardware/hardware.md) to get more on how the hardware is builted and to [this one](nucleo/nucleo.md) to see some code insights.
+Refer to [this file](hardware/NUCLEO_HARDWARE.md) to get more on how the hardware is builted and to [this one](nucleo/NUCLEO.md) to see some code insights.
 
 ## Setup MQTT stuff
 
@@ -29,7 +29,7 @@ connection local_bridge_to_mosquitto
 ```
 
 ### Bridge between MQTT-SN and MQTT
-We will use mosquitto like [here](https://aws.amazon.com/it/blogs/iot/how-to-bridge-mosquitto-mqtt-broker-to-aws-iot/).
+We will use mosquitto like in [this aws blog post](https://aws.amazon.com/it/blogs/iot/how-to-bridge-mosquitto-mqtt-broker-to-aws-iot/).
 
 To begin we need the following from Amazon:
 
@@ -37,22 +37,12 @@ To begin we need the following from Amazon:
 * PEM encoded client certificate
 * client private key
 
-Now we need to specify in a mosquitto config file the adress of the AWT IoT core service and the topics, and their specific diretctions, that we want to bridge and copy the AWS certificates in `/etc/mosquitto/certs/`.
+Now we need to specify in a mosquitto config file the address of the AWT IoT core service, the topics that we want to bridge and their diretctions and copy the AWS certificates in `/etc/mosquitto/certs/`.
 
-## How to run
+## How to run 
 Assumptions made in this section:
 * we cloned [RIOT](https://github.com/RIOT-OS/RIOT) and [mosquitto.rsmb](https://github.com/eclipse/mosquitto.rsmb) in the main directory of this project;
 * we are in the project directory.
-
-
-### Make the nucleo network work
-To make this work basically following [emcute_mqttsn example](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-riot-native), so:
-
-```sh
-sudo ./RIOT/dist/tools/tapsetup/tapsetup -d
-sudo ./RIOT/dist/tools/tapsetup/tapsetup
-sudo ip a a fec0:affe::1/64 dev tapbr0
-```
 
 ### Run the brokers
 To run MQTT-SN rsmb broker we issue
@@ -65,12 +55,25 @@ Then to run mosquitto with the config file in the current directory we can stop 
 mosquitto -c mosquitto_bridge.conf
 ```
 
-### Run the firmware
+### Nucleo
+#### Make the nucleo network work
+As in the [emcute_mqttsn example](https://github.com/RIOT-OS/RIOT/tree/master/examples/emcute_mqttsn#setting-up-riot-native):
+
+```sh
+sudo ./RIOT/dist/tools/tapsetup/tapsetup -d
+sudo ./RIOT/dist/tools/tapsetup/tapsetup
+sudo ip a a fec0:affe::1/64 dev tapbr0
+```
+
+#### Run the nucleo firmware
 ```sh
 make BUILD_IN_DOCKER=1 BOARD=nucleo-f401re flash term
 ```
 
+
 ## AWS
+![NetOverview](network_overview_tappo.jpg)
+
 ### IoT Core
 Once data from the devices is received from Iot Core data from the 4 different topics is parsed by 4 diffent rules and stored in 4 different tables (I don't know if this is the best approch) based on device id and message timestamp.
 
