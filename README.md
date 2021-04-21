@@ -1,18 +1,17 @@
 # tappo
-Is a safety oriented smart cap that senses liquid level.
+Is a safety-oriented smart cap that senses liquid level.
 
-It's buildt manly for plastic tanks as are the ones used in the targeted senarios:
-* monitor distilled water tanks, used to refill an acquarium, to know when to shut the valve to avoid a tank overflow;
-* monitor waste water produced by air conditioning system often stored in plastic tanks.
+It's built manly for plastic tanks as are the ones used in the targeted scenarios:
+* monitor distilled water tanks used to refill an aquarium, to know when to shut the valve to avoid a tank overflow;
+* monitor wastewater produced by air conditioning systems often stored in plastic tanks.
 
-When the device is inserted, it senses it using a switch, and starts measuring the distance between the liquid and itself via an ultrasonic distance sensor.
+When the device is inserted, it senses it using a switch and starts measuring the distance between the liquid and itself via an ultrasonic distance sensor.
 
 It uses the first measure as a reference to compute a value between 0 and 100 representing the "fill percentage" of the tank.
 
-The device measures every two minutes the the liquid level and publish the data via mqtt-sn. 
-If a critical percentage is reached it will the will alert the user, changing the state of the actuators.
+The device measures every two minutes the liquid level and publishes the data via mqtt-sn. If a critical percentage is reached it will alert the user, changing the state of the actuators.
 
-On the other hand, when the cap is inserted/removed, it triggers an interrupt that publishes instantly the state via it's dedicated topic.
+On the other hand, when the cap is inserted/removed, it triggers an interrupt that publishes instantly the state via its dedicated topic.
 
 ## Nucleo
 Refer to [this file](hardware/NUCLEO_HARDWARE.md) to get more on the nucleo hardware and to [this one](nucleo/NUCLEO.md) to see some code insights.
