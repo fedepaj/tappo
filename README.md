@@ -83,6 +83,3 @@ To retrive data we access DynamoDB, to toggle the actuators we publish to the re
 
 ## Dashboard
 You can find tappo's dashboard [here](https://github.com/fedepaj/tappo_app/).
-
-## Final results
-
